@@ -28,7 +28,8 @@ class AuthServiceProvider extends ServiceProvider
 
        $gate->define('update-post', function ($user, $post){
 
-           return $user->email == 'dennyrock18@gmail.com' || $user->id == $post->user_id;
+           return $user->isAdmin() || $user->isAuthor($post);
+           //return $user->email == 'dennyrock18@gmail.com' || $user->id == $post->user_id;
        });
     }
 }

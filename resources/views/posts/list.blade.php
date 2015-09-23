@@ -24,7 +24,7 @@
                     <a href="{{ url('eliminar-post', [$post->id]) }}">Eliminar</a>
                     @else
                         <a href="#">Reportar Un Error</a>
-                    @endcan
+                        @endcan
                 </td>
             </tr>
         @endforeach

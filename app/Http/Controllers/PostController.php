@@ -29,10 +29,12 @@ class PostController extends Controller
 
         //Este es el que a el le gusta porque sino tiene permiso lo que hace es retornar a una vista
         // o a donde sea y lanzar una execcion.
+        //**********************************************************************
         if (Gate::denies('update-post', $post)) {
             Alert::danger('No tienes permisos para editar este post');
             return redirect('posts');
         }
+        //**********************************************************************
 
         return $post->title;
     }
@@ -40,6 +42,15 @@ class PostController extends Controller
     public function destroy($id, Request $request)
     {
         $post = Post::find($id);
+
+        //Regla para saber si el user conectado tiene permiso para eliminar el pos seleccionado
+        //**********************************************************************
+        if (Gate::denies('update-post', $post)) {
+            Alert::danger('No tienes permisos para eliminar este post');
+            return redirect('posts');
+        }
+        //**********************************************************************
+
         $post->delete();
 
         $message = 'El Post: ' . $post->title . ' del User: '. $post->user->name .' fue eliminado de nuestro registro';

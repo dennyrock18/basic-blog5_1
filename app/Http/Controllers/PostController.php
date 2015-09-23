@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Post;
+use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Styde\Html\Facades\Alert;
@@ -33,5 +35,23 @@ class PostController extends Controller
         }
 
         return $post->title;
+    }
+
+    public function destroy($id, Request $request)
+    {
+        $post = Post::find($id);
+        $post->delete();
+
+        $message = 'El Post: ' . $post->title . ' del User: '. $post->user->name .' fue eliminado de nuestro registro';
+
+        if($request->ajax())
+        {
+            return response()->json([
+                'id' => $post->id,
+                'message' => $message
+            ]);
+        }
+        Alert::success($message);
+        return redirect('posts');
     }
 }

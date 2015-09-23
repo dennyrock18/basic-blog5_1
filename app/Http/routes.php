@@ -19,3 +19,7 @@ Route::get('/', function () {
 
 Route::get('posts', 'PostController@index');
 Route::get('edit-post/{id}', 'PostController@edit');
+Route::get('eliminar-post/{id}', 'PostController@destroy');
+
+
+

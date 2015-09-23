@@ -21,6 +21,7 @@
                 <td>
                     @can('update-post', $post)
                     <a href="{{ url('edit-post', [$post->id]) }}">Editar</a>
+                    <a href="{{ url('eliminar-post', [$post->id]) }}">Eliminar</a>
                     @else
                         <a href="#">Reportar Un Error</a>
                     @endcan

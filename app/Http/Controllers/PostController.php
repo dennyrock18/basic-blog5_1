@@ -30,7 +30,7 @@ class PostController extends Controller
         //Este es el que a el le gusta porque sino tiene permiso lo que hace es retornar a una vista
         // o a donde sea y lanzar una execcion.
         //**********************************************************************
-        if (Gate::denies('update-post', $post)) {
+        if (Gate::denies('update', $post)) {
             Alert::danger('No tienes permisos para editar este post');
             return redirect('posts');
         }
@@ -45,7 +45,7 @@ class PostController extends Controller
 
         //Regla para saber si el user conectado tiene permiso para eliminar el pos seleccionado
         //**********************************************************************
-        if (Gate::denies('update-post', $post)) {
+        if (Gate::denies('update', $post)) {
             Alert::danger('No tienes permisos para eliminar este post');
             return redirect('posts');
         }

@@ -46,4 +46,9 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->id == $post->user_id;
     }
+
+    public function isGuest()
+    {
+        return !$this->email == 'dennyrock18@gmail.com';
+    }
 }
